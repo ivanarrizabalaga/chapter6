@@ -1,4 +1,14 @@
 <ion-view view-title="{{params.city}}">
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" menu-toggle="left">
+            <span class="icon ion-navicon"></span>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon" ng-click="showOptions()">
+            <span class="icon ion-more"></span>
+        </button>
+    </ion-nav-buttons>
     <ion-content>
         <ion-scroll direction="y" paging="true" ng-style="{width:getWidth(), height: getHeight()}">
             <div ng-style="{height: getTotalHeight()}">
@@ -21,10 +31,10 @@
                         <h1 class="title">Daily Forecast</h1> </div>
                     <div class="has-header">
                         <p class="padding">{{forecast.daily.summary}}</p>
-                        <div class="row" ng-repeat="day in forecast.daily.data | limitTo:settings.days"> #5
-                            <div class="col col-50">{{day.time + '000' | date:'EEEE'}}</div> #6
+                        <div class="row" ng-repeat="day in forecast.daily.data | limitTo:settings.days">
+                            <div class="col col-50">{{day.time + '000' | date:'EEEE'}}</div>
                             <div class="col"><span class="icon" ng-class="day.icon | icons"></span><sup>{{day.precipProbability | chance}}</sup>
-                            </div> #7
+                            </div>
                             <div class="col">{{day.temperatureMax | number:0}}&deg;</div>
                             <div class="col">{{day.temperatureMin | number:0}}&deg;</div>
                         </div>
@@ -38,7 +48,7 @@
                         <div class="item">Sunrise: {{forecast.daily.data[0].sunriseTime | timezone:forecast.timezone}}</div>
                         <div class="item">Sunset: {{forecast.daily.data[0].sunsetTime | timezone:forecast.timezone}}</div>
                         <div class="item">Visibility: {{forecast.currently.visibility}}</div>
-                        <div class="item">Humidity: {{forecast.currently.humidity * 100}}%</div>
+                        <div class="item">Humidity: {{forecast.currently.humidity * 100}}%</div>                        
                     </div>
                 </div>
             </div>
